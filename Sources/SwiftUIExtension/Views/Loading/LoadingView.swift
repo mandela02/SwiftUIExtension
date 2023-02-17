@@ -8,9 +8,14 @@
 import SwiftUI
 
 public struct LoadingView: View {
-    public init(backgroundColor: Color, foregroundColor: Color) {
+    public init(backgroundColor: Color,
+                foregroundColor: Color,
+                thickess: CGFloat = 15,
+                innerThickess: CGFloat = 10) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
+        self.thickess = thickess
+        self.innerThickess = innerThickess
     }
     
     @State
@@ -18,19 +23,22 @@ public struct LoadingView: View {
     
     let backgroundColor: Color
     let foregroundColor: Color
+    
+    let thickess: CGFloat
+    let innerThickess: CGFloat
         
     public var body: some View {
         ZStack {
             Circle()
                 .stroke(backgroundColor,
-                        style: StrokeStyle(lineWidth: 15,
+                        style: StrokeStyle(lineWidth: thickess,
                                            lineCap: .round,
                                            lineJoin: .round))
             
             Circle()
                 .trim(from: 0, to: 0.25)
                 .stroke(foregroundColor,
-                        style: StrokeStyle(lineWidth: 10,
+                        style: StrokeStyle(lineWidth: innerThickess,
                                            lineCap: .round,
                                            lineJoin: .round))
                 .rotationEffect(.init(degrees: isAnimating ? 0 : 360))

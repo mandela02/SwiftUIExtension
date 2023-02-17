@@ -47,14 +47,14 @@ public extension View {
 }
 
 public extension View {
-    func onBackground(_ f: @escaping () -> Void) -> some View {
+    func onEnterBackground(_ f: @escaping () -> Void) -> some View {
         self.onReceive(
             NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification),
             perform: { _ in f() }
         )
     }
     
-    func onForeground(_ f: @escaping () -> Void) -> some View {
+    func onEnterForeground(_ f: @escaping () -> Void) -> some View {
         self.onReceive(
             NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification),
             perform: { _ in f() }
